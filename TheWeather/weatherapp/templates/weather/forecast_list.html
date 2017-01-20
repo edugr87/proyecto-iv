@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dashboard</title>
+    <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/weather.css'%}" rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <div class="page-header">
+      <h1>Dashboard</h1>
+    </div>
+
+    <div class="col-left">
+
+    </div>
+
+    <div class="col-right">
+      <div class="section-header">
+        <h2> Weather </h2>
+      </div>
+      <div class="forecast">
+        <table>
+          <tr>
+            <td>
+            <div class="temp">
+              <p>{{ forecasts.temp }}&deg; in {{ forecasts.city }}</p>
+            </div>
+            </td>
+            <td>
+              <img src={{ forecasts.icon_url }} />
+            </td>
+            </tr>
+            <tr>
+              <td>
+            <div class="description">
+              <p>{{ forecasts.weather_description }} </p>
+            </div>
+            <td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+
+</html>

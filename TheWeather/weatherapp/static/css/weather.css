@@ -1,0 +1,118 @@
+h1, h2, h3, h4 {
+    color: #FCA205;
+    font-family: 'Lobster';
+}
+
+body {
+    padding-left: 15px;
+}
+
+.page-header {
+    background-color: #ff9400;
+    margin-top: 0px;
+    padding: 20px 20px 20px 40px;
+}
+
+.page-header h1 {
+    color: #ffffff;
+    font-size: 32pt;
+    text-decoration: none;
+}
+
+.col-left {
+    width: 50%;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    float: left;
+}
+
+.col-right {
+    width: 30%;
+    margin-top: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    float: left;
+}
+
+.content h2{
+    color: #ffffff;
+}
+
+.section-header {
+    padding: 20px 20px 20px 40px;
+    background-color:gray;
+}
+
+.section-header h2{
+    font-size: 20pt;
+    color: #ffffff;
+}
+
+.edit_hover_class{
+    width: 20px;
+    float:left;
+    margin-right: 8px;
+}
+
+.edit_hover_class img{
+    width: 18px;
+}
+
+.edit_hover_class a{
+    visibility:hidden;
+}
+
+.edit_hover_class:hover a {
+    visibility:visible;
+}
+
+.post {
+    height: 50px;
+    line-height: 50px;
+    background-color: #ccffcc;
+}
+
+.post:hover {
+    background-color: #b3e6b3;
+}
+.post a {
+    color: #1f2322;
+    text-decoration: none;
+}
+
+.forecast {
+    Background-color: #ffffff;
+}
+
+.forecast img{
+    float: right;
+    width: 100px;
+}
+
+.forecast p{
+    color: #1f2322
+    text-align: center;
+}
+
+.temp{
+    float: left;
+    font-size: large;
+}
+
+.date{
+    font-size: medium;
+}
+
+.description{
+    font-size:large;
+}
+
+.section-header {
+    height: 75px;
+    background-color: blue;
+}
+
+.section-header h2{
+    color: #ffffff;
+}
