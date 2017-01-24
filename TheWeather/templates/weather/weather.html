@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Plantilla básica de Bootstrap</title>
+
+    <!-- CSS de Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- librerías opcionales que activan el soporte de HTML5 para IE8 -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/weather/index">The Weather</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/weather/index">Index</a></li>
+          <li><a href="/weather/index">Page 1</a></li>
+          <li><a href="#">Page 2</a></li>
+        </ul>
+      </div>
+</nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" >
+          <div class="panel panel-info">
+            <div class="panel-heading">
+              <p>El tiempo en tu ciudad</p>
+            </div>
+            <div class="panel-body">
+              <h2>Resultado de busqueda:<h2>
+              <hr>
+              {% if zipcode %}
+              <h2>El Tiempo en {{zipcode}} </h2>
+                  <h3>Ciudad: {{ zipcode }} </h3>
+                  <h3>Temperatura: {{temperature}}</h3>
+                  <h3>descripcion: {{description}} </h3>
+                  <h3>Hora de amanecer: {{sunrise}} </ph3>
+                  <h3>Puesta de sol: {{sunset}} </h3>
+                  <h3>Viento: {{wind}} </h3>
+              {% else %}
+                  <p>La categoria {{ zipcode }} no existe!</p>
+              {% endif %}
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details »</a></p>
+       </div>
+      </div>
+    </div>
+    <!-- Librería jQuery requerida por los plugins de JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Todos los plugins JavaScript de Bootstrap (también puedes
+         incluir archivos JavaScript individuales de los únicos
+         plugins que utilices) -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

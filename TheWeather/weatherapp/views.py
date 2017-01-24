@@ -1,9 +1,13 @@
 from django.http import HttpResponse, JsonResponse
 import datetime, requests, json
 from django.shortcuts import render
+from django.template import loader
 from models import Weather
+from datetime import datetime
+from forms import SearchForm
 
 weather_url="http://api.openweathermap.org/data/2.5/weather?q={},es&appid=ceb51408067b2e840e12f34c8c82d1cb"
+
 
 def current_datetime(request):
     now=datetime.datetime.now()
@@ -11,40 +15,64 @@ def current_datetime(request):
     return HttpResponse(html)
 
 #Kelvin to Farenheit
-def k_to_f(kelvin):
-    return round(kelvin*(9.0/5.0) - 459.67,2)
+def k_to_c(kelvin):
+    return round(kelvin-273.15)
 
 #  Get zipcode from the database
-def zipcode_get(request):
-    w= Weather.objects.get(id=1)
-    return HttpResponse(w.zipcode)
+def index(request):
+
+    if request.method == "POST":
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            url=weather_url.format(request.POST['ciudad'])
+            ciudad=request.POST['ciudad']
+            toDel = Weather.objects.filter(zipcode=ciudad)
+            toDel.delete()
+            response = requests.get(url)
+
+            json_response = json.loads(response.text)
+
+            w= Weather(temperature=k_to_c(json_response["main"]["temp"]),zipcode=ciudad, description=json_response["weather"][0]["description"], sunrise= json_response["sys"]["sunrise"], sunset= json_response["sys"]["sunset"],wind= json_response["wind"]["speed"])
+            w.save()
+            #html="<html><body>%s y %s</body></html>"% (w.temperature, w.zipcode)
+            context_dict = {}
+            context_dict['temperature'] = k_to_c(json_response["main"]["temp"])
+            context_dict['zipcode'] = ciudad
+            context_dict['description'] = json_response["weather"][0]["description"]
+            context_dict['sunrise']= datetime.utcfromtimestamp(json_response["sys"]["sunrise"])
+            context_dict['sunset']= datetime.utcfromtimestamp(json_response["sys"]["sunset"])
+            context_dict['wind']= json_response["wind"]["speed"]
+
+            return render(request, 'weather/weather.html', context_dict)
+    else:
+        w= Weather.objects.all()
+        context_dict = {'city': w,'form':SearchForm()}
+
+        return render(request, 'weather/index.html', context_dict)
 
 # If method is post create the resources needed for zipcdode under id=1
-def zipcode_post(request,zipcode):
+def zipcode_post(request):
     #return HttpResponse("Hello Weather")
-    url=weather_url.format(zipcode)
+    if (request.method == "POST"):
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            url=weather_url.format(request.POST['ciudad'])
+            response = requests.get(url)
 
-    response = requests.get(url)
+            json_response = json.loads(response.text)
 
-    json_response = json.loads(response.text)
+            w= Weather(temperature=k_to_c(json_response["main"]["temp"]),zipcode=zipcode, description=json_response["weather"][0]["description"], sunrise= json_response["sys"]["sunrise"], sunset= json_response["sys"]["sunset"],wind= json_response["wind"]["speed"])
+            w.save()
+            #html="<html><body>%s y %s</body></html>"% (w.temperature, w.zipcode)
+            context_dict = {}
+            context_dict['temperature'] = k_to_c(json_response["main"]["temp"])
+            context_dict['zipcode'] = zipcode
+            context_dict['description'] = json_response["weather"][0]["description"]
+            context_dict['sunrise']= datetime.utcfromtimestamp(json_response["sys"]["sunrise"])
+            context_dict['sunset']= datetime.utcfromtimestamp(json_response["sys"]["sunset"])
+            context_dict['wind']= json_response["wind"]["speed"]
 
-    print '---->'
-    print json_response
-    print '\n'
-    #return HttpResponse(json.dumps(json_response))
-
-    w= Weather.objects.get(id=1)
-    w.temperature= k_to_f(json_response["main"]["temp"])
-    w.zipcode=zipcode
-    w.description= json_response["weather"][0]["description"]
-    w.save()
-
-    html="<html><body>%s y %s</body></html>"% (w.temperature, w.zipcode) 
-
-    if request.method == 'GET':
-        return HttpResponse(html)
-    else:
-        return HttpResponse("405, Method Not Allowed")
+            return render(request, 'weather/weather.html', context_dict)
 
 #return the decription in the db
 def description(request):
