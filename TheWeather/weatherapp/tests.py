@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Weather
+from weatherapp.models import Weather
 
 # Create your tests here.
 #w= Weather(temperature=k_to_c(json_response["main"]["temp"]),zipcode=ciudad, description=json_response["weather"][0]["description"], sunrise= json_response["sys"]["sunrise"], sunset= json_response["sys"]["sunset"],wind= json_response["wind"]["speed"])
