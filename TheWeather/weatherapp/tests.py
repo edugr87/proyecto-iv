@@ -7,5 +7,4 @@ from weatherapp.models import Weather
 class Weather(TestCase):
 
     def CreateWeather(self):
-        w=Weather(temperature='35',zipcode='grandada', description='Cloudy', sunrise= '2017-01-25 07:21:56', sunset= '2017-01-25 07:21:56',wind= '4.6')
-        w.save()
+        Weather.objects.create(temperature='35',zipcode='grandada', description='Cloudy', sunrise= '2017-01-25 07:21:56', sunset= '2017-01-25 07:21:56',wind= '4.6')
