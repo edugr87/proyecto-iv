@@ -32,7 +32,7 @@ def index(request):
 
             json_response = json.loads(response.text)
 
-            w= Weather(temperature=k_to_c(json_response["main"]["temp"]),zipcode=ciudad, description=json_response["weather"][0]["description"], sunrise= json_response["sys"]["sunrise"], sunset= json_response["sys"]["sunset"],wind= json_response["wind"]["speed"])
+            w= Weather(temperature=k_to_c(json_response["main"]["temp"]),zipcode=ciudad, description=json_response["weather"][0]["description"], sunrise= datetime.utcfromtimestamp(json_response["sys"]["sunrise"]), sunset= datetime.utcfromtimestamp(json_response["sys"]["sunset"]),wind= json_response["wind"]["speed"])
             w.save()
             #html="<html><body>%s y %s</body></html>"% (w.temperature, w.zipcode)
             context_dict = {}
