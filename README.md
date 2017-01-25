@@ -23,8 +23,8 @@ Un ejemplo de consulta a la api de openweathermap:
 
 El sistema de integración continua comprueba de forma continua que cada cambio realizado al repositorio, siga funcionando correctamente.
 
-Travis permite testear el código del proyecto. Para llevar a cabo esto hay que adjuntar en el directorio raíz de nuestro proyecto el fichero [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/.travis.yml)
+Travis permite testear el código del proyecto. Para llevar a cabo esto hay que adjuntar en el directorio raíz de nuestro proyecto el fichero [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/.travis.yml) .travis.yml
 
 ##Makefile
 
-Se ha creado un archivo Makefile para automatizar la creacion de proyecto.[GitHub](https://github.com/edugr87/proyecto-iv/blob/master/Makefile)
+Se ha creado un archivo Makefile para automatizar la creacion de proyecto. [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/Makefile) Makefile
