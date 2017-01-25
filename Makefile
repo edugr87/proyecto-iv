@@ -1,8 +1,8 @@
 run:
-	python ./TheWeather/manage.py runserver
+	python manage.py runserver
 
 test:
-	python ./TheWeather/manage.py test
+	python manage.py test
 
 install:
 	pip install -r requirements.txt
