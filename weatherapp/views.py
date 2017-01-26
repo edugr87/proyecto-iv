@@ -1,4 +1,4 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 import datetime, requests, json
 from django.shortcuts import render
 from django.template import loader
@@ -73,6 +73,16 @@ def zipcode_post(request):
             context_dict['wind']= json_response["wind"]["speed"]
 
             return render(request, 'weather/weather.html', context_dict)
+
+def delete_elements(request):
+    if request.method =="POST":
+        print "----->"
+        print request.POST['ciudad']
+        print "\n"
+        w= Weather.objects.filter(zipcode=request.POST['ciudad'])
+        w.delete()
+    return HttpResponseRedirect('/index/')
+
 
 #return the decription in the db
 def description(request):
