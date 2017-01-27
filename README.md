@@ -36,11 +36,11 @@ Se ha creado un archivo Makefile para automatizar la creacion de proyecto. [GitH
 He creado mi archivo travis.yml, igual que antes registrado con github previamente. Dejo unas imagenes donde comprobamos que todo el proceso se ha realizado con exito:
 
 
-[Imagen travis](/iv-img/captura2.png)
+![Imagen travis](/iv-img/captura2.png)
 
 ##Despliegue en un PaaS.
 
 Se ha realizado el despliegue de la aplicación en Heroku. Se porporciona un script con el que automatizamos el despliegue en Heroku tras clonar el proyecto.
 
-[Imagen Heroku](/iv-img/captura6.png)
-[Imagen de la aplicacion online](/iv-img/captura4.png)
+![Imagen Heroku](/iv-img/captura6.png)
+![Imagen de la aplicacion online](/iv-img/captura4.png)
