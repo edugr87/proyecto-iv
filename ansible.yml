@@ -1,0 +1,26 @@
+- hosts: localhost
+  sudo: yes
+  remote_user: vagrant
+  tasks:
+  - name: Actualizar sistema
+    apt: update_cache=yes upgrade=dist
+  - name: Instalar python-setuptools
+    apt: name=python-setuptools state=present
+  - name: Instalar build-essential
+    apt: name=build-essential state=present
+  - name: Instalar pip
+    apt: name=python-pip state=present
+  - name: Instalar git
+    apt: name=git state=present
+  - name: Ins Pyp
+    apt: pkg=python-pip state=present
+  - name: Instalar python-dev
+    apt: pkg=python-dev state=present
+  - name: Obtener aplicacion de git
+    git: repo=https://github.com/edugr87/proyecto-iv.git  dest=TheWeather clone=yes force=yes
+  - name: Permisos de ejecucion
+    command: chmod -R +x submodulo-alberto
+  - name: Instalar requisitos
+    command: sudo pip install -r TheWeather/requirements.txt
+  - name: ejecutar
+    command: nohup sudo python TheWeather/manage.py runserver 0.0.0.0:80
