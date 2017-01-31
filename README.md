@@ -44,3 +44,100 @@ Se ha realizado el despliegue de la aplicación en Heroku. Se porporciona un scr
 
 ![Imagen Heroku](/iv-img/captura6.png)
 ![Imagen de la aplicacion online](/iv-img/captura4.png)
+
+
+##Despliegue en IaaS : AWS
+
+En este apartado se va a desplegar la aplicacion automaticamente en amazon AWS. Para ello usamos Ansible y vagrant. Estas dos aplicaciones nos van a hacer que todo este despliegue se haga automatico una vez que las configuremos correctamente.
+
+instalamos ansile
+'''sudo pip install ansible'''
+
+Este es su archivo ansile.yml:
+
+'''
+- hosts: all
+  sudo: true
+  tasks:
+  - name: Actualizar cache
+    apt: update_cache=yes
+  - name: Actualizamos repos.
+    shell: sudo apt-get update && sudo apt-get upgrade -y
+  - name: Instalar python-setuptools
+    apt: name=python-setuptools state=present
+  - name: Instalar build-essential
+    apt: name=build-essential state=present
+  - name: Instalar pip
+    apt: name=python-pip state=present
+  - name: Instalar git
+    apt: name=git state=present
+  - name: Ins Pyp
+    apt: pkg=python-pip state=present
+  - name: Instalar python-dev
+    apt: pkg=python-dev state=present
+  - name: Obtener aplicacion de git
+    git: repo=https://github.com/edugr87/proyecto-iv.git  dest=TheWeather clone=yes force=yes
+  - name: Permisos de ejecucion
+    command: chmod -R +x TheWeather
+  - name: Instalar requisitos
+    command: sudo pip install -r TheWeather/requirements.txt
+  - name: ejecutar
+    command: nohup sudo python TheWeather/manage.py runserver 0.0.0.0:80
+
+'''
+
+archivo ansile.cfg
+
+'''
+[defaults]
+
+private_key_file=/eduardo.pem
+
+[ssh_connection]
+control_path = %(directory)s/ssh-%%C
+'''
+
+El siguiente paso es la instalacion de [vagrant](https://www.vagrantup.com), para instalarlo buscamos en su web oficial.
+Es necesario instalar el plugin aws:
+'''vagrant plugin install vagrant-aws'''
+
+Ahora creamos un [vagrantfile](/Vagrantfile)
+'''
+#-*- mode: ruby -*-
+#vi: set ft=ruby :
+
+
+Vagrant.configure('2') do |config|
+    config.vm.box = "dummy"
+    config.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+
+
+    config.vm.provider :aws do |aws, override|
+        aws.access_key_id = 'access_key_id'
+        aws.secret_access_key = 'secret_access_key'
+        aws.keypair_name = 'eduardo'
+        aws.ami = "ami-01f05461"
+        aws.region = "us-west-2"
+        aws.security_groups = ['cc']
+        aws.instance_type = "t2.micro"
+        override.ssh.username = "ubuntu"
+        override.ssh.private_key_path = "archivo.pem"
+    end
+
+    config.vm.provision "ansible" do |ansible|
+        ansible.playbook = "ansible.yml"
+  end
+end
+'''
+
+ejecutamos la orden:
+'''
+vagrant up -provider=aws
+'''
+![Imagen resultado vagrant](/iv-img/resultadovagrant1.png)
+![Imagen resultado vagrant](/iv-img/resultadovagrant0.png)
+
+Al final despues de un resultado correcto,tenemos una instancia creada con el despliegue:
+![Imagen resultado vagrant](/iv-img/instancia.png)
+y ponemos ver nuestra app desplegada en [web](http://ec2-35-164-82-197.us-west-2.compute.amazonaws.com/index/)
+![Imagen resultado vagrant](/iv-img/appinamazon.png)
