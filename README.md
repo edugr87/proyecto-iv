@@ -51,11 +51,13 @@ Se ha realizado el despliegue de la aplicación en Heroku. Se porporciona un scr
 En este apartado se va a desplegar la aplicacion automaticamente en amazon AWS. Para ello usamos Ansible y vagrant. Estas dos aplicaciones nos van a hacer que todo este despliegue se haga automatico una vez que las configuremos correctamente.
 
 instalamos ansile
+
 ```sudo pip install ansible```
 
 Este es su archivo ansile.yml:
 
 ```
+
 - hosts: all
   sudo: true
   tasks:
@@ -89,6 +91,7 @@ Este es su archivo ansile.yml:
 archivo ansile.cfg
 
 ```
+
 [defaults]
 
 private_key_file=/eduardo.pem
@@ -102,6 +105,7 @@ Es necesario instalar el plugin aws:
 ```vagrant plugin install vagrant-aws```
 
 Ahora creamos un [vagrantfile](/Vagrantfile)
+
 ```
 #-*- mode: ruby -*-
 #vi: set ft=ruby :
@@ -134,10 +138,15 @@ ejecutamos la orden:
 ```
 vagrant up -provider=aws
 ```
+
 ![Imagen resultado vagrant](/iv-img/resultadovagrant1.png)
+
 ![Imagen resultado vagrant](/iv-img/resultadovagrant0.png)
 
 Al final despues de un resultado correcto,tenemos una instancia creada con el despliegue:
+
 ![Imagen resultado vagrant](/iv-img/instancia.png)
+
 y ponemos ver nuestra app desplegada en [web](http://ec2-35-164-82-197.us-west-2.compute.amazonaws.com/index/)
+
 ![Imagen resultado vagrant](/iv-img/appinamazon.png)
