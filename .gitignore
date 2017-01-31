@@ -10,7 +10,8 @@
 *~
 *.#
 **/.DS_Store
-*.pem
+.pem
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -71,3 +72,6 @@ docs/_build/
 venv/
 ENV/
 staticfiles
+
+# Vagrant files
+Vagrant/.vagrant

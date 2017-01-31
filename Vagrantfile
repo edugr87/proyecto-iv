@@ -1,7 +1,6 @@
 #-*- mode: ruby -*-
 #vi: set ft=ruby :
-Vagrant.require_plugin 'vagrant-aws'
-Vagrant.require_plugin 'vagrant-omnibus'
+
 
 Vagrant.configure('2') do |config|
     config.vm.box = "dummy"
@@ -9,21 +8,18 @@ Vagrant.configure('2') do |config|
 
 
     config.vm.provider :aws do |aws, override|
-        aws.access_key_id = 'clave id'
-        aws.secret_access_key = 'secretacceskey'
+        aws.access_key_id = 'access_key_id'
+        aws.secret_access_key = 'secret_access_key'
         aws.keypair_name = 'eduardo'
-        aws.ami = "ami-5189a661"
+        aws.ami = "ami-01f05461"
         aws.region = "us-west-2"
         aws.security_groups = ['cc']
         aws.instance_type = "t2.micro"
         override.ssh.username = "ubuntu"
-        override.ssh.private_key_path = "eduardo.pem"
+        override.ssh.private_key_path = "ruta a .pem"
     end
 
     config.vm.provision "ansible" do |ansible|
-        ansible.sudo = true
         ansible.playbook = "ansible.yml"
-        ansible.verbose = "v"
-        ansible.host_key_checking = false
   end
 end
