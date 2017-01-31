@@ -51,11 +51,11 @@ Se ha realizado el despliegue de la aplicación en Heroku. Se porporciona un scr
 En este apartado se va a desplegar la aplicacion automaticamente en amazon AWS. Para ello usamos Ansible y vagrant. Estas dos aplicaciones nos van a hacer que todo este despliegue se haga automatico una vez que las configuremos correctamente.
 
 instalamos ansile
-'''sudo pip install ansible'''
+```sudo pip install ansible```
 
 Este es su archivo ansile.yml:
 
-'''
+```
 - hosts: all
   sudo: true
   tasks:
@@ -84,25 +84,25 @@ Este es su archivo ansile.yml:
   - name: ejecutar
     command: nohup sudo python TheWeather/manage.py runserver 0.0.0.0:80
 
-'''
+```
 
 archivo ansile.cfg
 
-'''
+```
 [defaults]
 
 private_key_file=/eduardo.pem
 
 [ssh_connection]
 control_path = %(directory)s/ssh-%%C
-'''
+```
 
 El siguiente paso es la instalacion de [vagrant](https://www.vagrantup.com), para instalarlo buscamos en su web oficial.
 Es necesario instalar el plugin aws:
-'''vagrant plugin install vagrant-aws'''
+```vagrant plugin install vagrant-aws```
 
 Ahora creamos un [vagrantfile](/Vagrantfile)
-'''
+```
 #-*- mode: ruby -*-
 #vi: set ft=ruby :
 
@@ -128,12 +128,12 @@ Vagrant.configure('2') do |config|
         ansible.playbook = "ansible.yml"
   end
 end
-'''
+```
 
 ejecutamos la orden:
-'''
+```
 vagrant up -provider=aws
-'''
+```
 ![Imagen resultado vagrant](/iv-img/resultadovagrant1.png)
 ![Imagen resultado vagrant](/iv-img/resultadovagrant0.png)
 
