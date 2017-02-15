@@ -9,8 +9,6 @@
 *.[oa]
 *~
 *.#
-**/.DS_Store
-*.pem
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -74,3 +72,7 @@ staticfiles
 
 # Vagrant files
 Vagrant/.vagrant
+
+# Amazon Gitignore #
+####################
+*.pem
