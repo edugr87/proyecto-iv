@@ -76,3 +76,6 @@ Vagrant/.vagrant
 # Amazon Gitignore #
 ####################
 *.pem
+
+### Ansible ###
+*.retry
