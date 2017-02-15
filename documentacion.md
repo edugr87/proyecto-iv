@@ -14,5 +14,5 @@ Framework Django
 SQLite.
 AJAX.
 JQuery.
-Bootstrap
-HTML y CSS 
+Bootstrap.
+HTML y CSS.
