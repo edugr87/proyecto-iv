@@ -6,7 +6,6 @@ Web para mostrar la informacion del tiempo de una ciudad introducidad por teclad
 Esta aplicacion tendra la posibilidad de hacer login de usuarios y mostrar la informacion deseada por cada usuario al loguearse.
 En un siguiente paso se hará que a ese usuario se le muestre información que le pueda ser util, como noticias dependiendo de sus gustos y preferencias.
 
-
 Herramientas de dessarrollo:
 
 Python.
