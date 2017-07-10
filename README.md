@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/edugr87/proyecto-iv.svg?branch=master)](https://travis-ci.org/edugr87/proyecto-iv)
 
-[Enlace de la Practica Funcionando](https://pacific-headland-84756.herokuapp.com/index/)
+[Enlace de la Practica Fun..cionando](https://pacific-headland-84756.herokuapp.com/index/)
 
 ## Descripción del proyecto
 
@@ -65,6 +65,7 @@ Es el momento de subir el código fuente:
 
 - git push heroku master
 ```
+![Imagen Proceso](/iv-img/captura3.png)
 
 Dejo unas imagenes del resultado del proceso:
 
@@ -74,6 +75,8 @@ Dejo unas imagenes del resultado del proceso:
 
 ##Contenedores
 Se ha optado por docker para el uso de contenedores como entorno de pruebas. Se ha creado un repositorio en [Docker Hub]https://cloud.docker.com/app/edugr87/repository/docker/edugr87/proyecto-iv/general que se irá actualizando cada vez que se actualiza el repositorio github.
+
+![Imagen autobuild Docker](/iv-img/captura5.png)
 
 ## Despliegue en IaaS : AWS
 ### Provisionamiento
