@@ -3,61 +3,95 @@
 
 [![Build Status](https://travis-ci.org/edugr87/proyecto-iv.svg?branch=master)](https://travis-ci.org/edugr87/proyecto-iv)
 
-##Descripción del proyecto
+[Enlace de la Practica Funcionando](https://pacific-headland-84756.herokuapp.com/index/)
+
+## Descripción del proyecto
 
 En esta asignatura voy a aprovechar para avanzar en la formacion con Python y Django. Voy a hacer una aplicacion web donde se pretende mostrar informacion sobre el tiempo en un determinado sitio.
 Como proveedor de informacion meteorologica se usara openweathermap, en concreto usaremos su API para hacer consultas sobre el tiempo.
 
 
-##Infraestructura
+## Infraestructura
 
 En este caso se va a usar el lenguaje Python y se usara con un framework Django que sigue el diseño Modelo, Vista, Template.
 Como base de datos se usará sqlite3 que es la que se usa por defecto en Django.
 
-##openweathermap
+## openweathermap
 
 Un ejemplo de consulta a la api de openweathermap:
 * http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=b1b15e88fa797225412429c1c50c122a1
 
-##integración continua
+## integración continua
 [![Build Status](https://travis-ci.org/edugr87/proyecto-iv.svg?branch=master)](https://travis-ci.org/edugr87/proyecto-iv)
 
 [Enlace a mi proyecto](https://github.com/edugr87/proyecto-iv/blob/master/.travis.yml)
 El sistema de integración continua comprueba de forma continua que cada cambio realizado al repositorio, siga funcionando correctamente.
 
 Travis permite testear el código del proyecto. Para llevar a cabo esto hay que adjuntar en el directorio raíz de nuestro proyecto el fichero [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/.travis.yml) .travis.yml
+en este fichero pondremos la version de python, las dependencias necesarias (archivo requirements.txt) y multiples opciones como por ejemplo el excluir ramas de github.
 
-##Makefile
+### Makefile
 
-Se ha creado un archivo Makefile para automatizar la creacion de proyecto. [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/Makefile) Makefile
+Se ha creado un archivo Makefile para automatizar la creacion de proyecto y realizar algun test de la aplicación. [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/Makefile) Makefile
 
-##Travis
+### Travis
 
-He creado mi archivo travis.yml, igual que antes registrado con github previamente. Dejo unas imagenes donde comprobamos que todo el proceso se ha realizado con exito:
+He creado mi archivo travis.yml. Dejo unas imagenes donde comprobamos que todo el proceso se ha realizado con exito:
 
 
 ![Imagen travis](/iv-img/captura2.png)
 
-##Despliegue en un PaaS.
+## Despliegue en un PaaS.
 
-Se ha realizado el despliegue de la aplicación en Heroku. Se porporciona un script con el que automatizamos el despliegue en Heroku tras clonar el proyecto.
+Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este PasS porque es el mejor servicios ofrece, una interfaz buena y facil de usar.
+
+### Pasos a seguir
+
+```
+Iniciamos sesión en la cuenta Heroku desde la consola.
+
+- heroku login
+
+clonamos el repositorio de la aplicacion.
+
+- git clone https://github.com/edugr87/proyecto-iv.git
+
+Los siguientes pasos preparan a Heroku para recibir el código fuente. Escribimos en la consola:
+
+- heroku create
+
+Esto creará un repositorio git remoto llamado heroku, que estará asociado al repositorio local. Heroku genera un nombre aleatorio:
+Es el momento de subir el código fuente:
+
+- git push heroku master
+```
+
+Dejo unas imagenes del resultado del proceso:
 
 ![Imagen Heroku](/iv-img/captura6.png)
 ![Imagen de la aplicacion online](/iv-img/captura4.png)
 
 
-##Despliegue en IaaS : AWS
+##Contenedores
+Se ha optado por docker para el uso de contenedores como entorno de pruebas. Se ha creado un repositorio en [Docker Hub]https://cloud.docker.com/app/edugr87/repository/docker/edugr87/proyecto-iv/general que se irá actualizando cada vez que se actualiza el repositorio github.
 
+## Despliegue en IaaS : AWS
+### Provisionamiento
 En este apartado se va a desplegar la aplicacion automaticamente en amazon AWS. Para ello usamos Ansible y vagrant. Estas dos aplicaciones nos van a hacer que todo este despliegue se haga automatico una vez que las configuremos correctamente.
 
-instalamos ansile
 
-```sudo pip install ansible```
+
+instalamos ansible.
+
+```
+sudo pip install ansible
+```
+
+En primer lugar cambiamos el fichero `ansible_host` con la ip de la maquina virtual AWS.
 
 Este es su archivo ansile.yml:
 
 ```
-
 - hosts: all
   sudo: true
   tasks:
@@ -100,7 +134,9 @@ private_key_file=/eduardo.pem
 control_path = %(directory)s/ssh-%%C
 ```
 
-El siguiente paso es la instalacion de [vagrant](https://www.vagrantup.com), para instalarlo buscamos en su web oficial.
+### Orquestación
+
+El siguiente paso es la instalacion de [vagrant](https://www.vagrantup.com), este es usado para la orquestar maquinas virtuales. para instalarlo buscamos en su web oficial.
 Es necesario instalar el plugin aws:
 ```vagrant plugin install vagrant-aws```
 
