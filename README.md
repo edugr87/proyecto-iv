@@ -43,8 +43,8 @@ He creado mi archivo travis.yml. Dejo unas imagenes donde comprobamos que todo e
 
 Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este PasS porque es el mejor servicios ofrece, una interfaz buena y facil de usar.
 
-```
-Pasos a seguir
+###Pasos a seguir
+
 ```
 Iniciamos sesión en la cuenta Heroku desde la consola.
 
@@ -62,6 +62,7 @@ Esto creará un repositorio git remoto llamado heroku, que estará asociado al r
 Es el momento de subir el código fuente:
 
 - git push heroku master
+```
 
 Dejo unas imagenes del resultado del proceso:
 
