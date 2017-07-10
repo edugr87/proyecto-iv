@@ -43,7 +43,7 @@ He creado mi archivo travis.yml. Dejo unas imagenes donde comprobamos que todo e
 
 Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este PasS porque es el mejor servicios ofrece, una interfaz buena y facil de usar.
 
-###Pasos a seguir
+### Pasos a seguir
 
 ```
 Iniciamos sesión en la cuenta Heroku desde la consola.
@@ -69,6 +69,8 @@ Dejo unas imagenes del resultado del proceso:
 ![Imagen Heroku](/iv-img/captura6.png)
 ![Imagen de la aplicacion online](/iv-img/captura4.png)
 
+### Contenedores
+Se ha optado por docker para el uso de contenedores como entorno de pruebas. Se ha creado un repositorio en [Docker Hub]https://cloud.docker.com/app/edugr87/repository/docker/edugr87/proyecto-iv/general que se irá actualizando cada vez que se actualiza el repositorio github.
 
 ## Despliegue en IaaS : AWS
 ### Provisionamiento
