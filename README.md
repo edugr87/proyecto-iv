@@ -40,24 +40,27 @@ He creado mi archivo travis.yml, igual que antes registrado con github previamen
 
 ## Despliegue en un PaaS.
 
-Se ha realizado el despliegue de la aplicación en Heroku. Se porporciona un script con el que automatizamos el despliegue en Heroku tras clonar el proyecto.
+Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este PasS porque es el mejor servicios ofrece, una interfaz buena y facil de usar. Se porporciona un script con el que automatizamos el despliegue en Heroku tras clonar el proyecto.
 
 ![Imagen Heroku](/iv-img/captura6.png)
 ![Imagen de la aplicacion online](/iv-img/captura4.png)
 
 
 ## Despliegue en IaaS : AWS
-
+### Provisionamiento
 En este apartado se va a desplegar la aplicacion automaticamente en amazon AWS. Para ello usamos Ansible y vagrant. Estas dos aplicaciones nos van a hacer que todo este despliegue se haga automatico una vez que las configuremos correctamente.
 
-instalamos ansile
+instalamos ansible.
 
-```sudo pip install ansible```
+```
+sudo pip install ansible
+```
+
+En primer lugar cambiamos el fichero `ansible_host` con la ip de la maquina virtual AWS.
 
 Este es su archivo ansile.yml:
 
 ```
-
 - hosts: all
   sudo: true
   tasks:
@@ -100,7 +103,9 @@ private_key_file=/eduardo.pem
 control_path = %(directory)s/ssh-%%C
 ```
 
-El siguiente paso es la instalacion de [vagrant](https://www.vagrantup.com), para instalarlo buscamos en su web oficial.
+### Orquestación
+
+El siguiente paso es la instalacion de [vagrant](https://www.vagrantup.com), este es usado para la orquestar maquinas virtuales. para instalarlo buscamos en su web oficial.
 Es necesario instalar el plugin aws:
 ```vagrant plugin install vagrant-aws```
 
