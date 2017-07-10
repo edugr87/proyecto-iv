@@ -8,15 +8,15 @@ Vagrant.configure('2') do |config|
 
 
     config.vm.provider :aws do |aws, override|
-        aws.access_key_id = 'access_key_id'
-        aws.secret_access_key = 'secret_access_key'
+        aws.access_key_id ='key_id'
+        aws.secret_access_key = 'access_key'
         aws.keypair_name = 'eduardo'
-        aws.ami = "ami-01f05461"
+        aws.ami = "ami-835b4efa"
         aws.region = "us-west-2"
-        aws.security_groups = ['cc']
+        aws.security_groups = ['vagrant']
         aws.instance_type = "t2.micro"
         override.ssh.username = "ubuntu"
-        override.ssh.private_key_path = "ruta a .pem"
+        override.ssh.private_key_path = 'rutaapen'
     end
 
     config.vm.provision "ansible" do |ansible|

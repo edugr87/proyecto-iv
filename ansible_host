@@ -1,2 +1,2 @@
 [cc]
-52.35.175.69 
+laip ansible_ssh_user='ubuntu'
