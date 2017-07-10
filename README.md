@@ -26,22 +26,44 @@ Un ejemplo de consulta a la api de openweathermap:
 El sistema de integración continua comprueba de forma continua que cada cambio realizado al repositorio, siga funcionando correctamente.
 
 Travis permite testear el código del proyecto. Para llevar a cabo esto hay que adjuntar en el directorio raíz de nuestro proyecto el fichero [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/.travis.yml) .travis.yml
-en este fichero pondremos la version de python y las dependencias necesarias (archivo requirements.txt).
+en este fichero pondremos la version de python, las dependencias necesarias (archivo requirements.txt) y multiples opciones como por ejemplo el excluir ramas de github.
 
-## Makefile
+### Makefile
 
-Se ha creado un archivo Makefile para automatizar la creacion de proyecto. [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/Makefile) Makefile
+Se ha creado un archivo Makefile para automatizar la creacion de proyecto y realizar algun test de la aplicación. [GitHub](https://github.com/edugr87/proyecto-iv/blob/master/Makefile) Makefile
 
-## Travis
+### Travis
 
-He creado mi archivo travis.yml, igual que antes registrado con github previamente. Dejo unas imagenes donde comprobamos que todo el proceso se ha realizado con exito:
+He creado mi archivo travis.yml. Dejo unas imagenes donde comprobamos que todo el proceso se ha realizado con exito:
 
 
 ![Imagen travis](/iv-img/captura2.png)
 
 ## Despliegue en un PaaS.
 
-Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este PasS porque es el mejor servicios ofrece, una interfaz buena y facil de usar. Se porporciona un script con el que automatizamos el despliegue en Heroku tras clonar el proyecto.
+Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este PasS porque es el mejor servicios ofrece, una interfaz buena y facil de usar.
+
+```
+Pasos a seguir
+```
+Iniciamos sesión en la cuenta Heroku desde la consola.
+
+- heroku login
+
+clonamos el repositorio de la aplicacion.
+
+- git clone https://github.com/edugr87/proyecto-iv.git
+
+Los siguientes pasos preparan a Heroku para recibir el código fuente. Escribimos en la consola:
+
+- heroku create
+
+Esto creará un repositorio git remoto llamado heroku, que estará asociado al repositorio local. Heroku genera un nombre aleatorio:
+Es el momento de subir el código fuente:
+
+- git push heroku master
+
+Dejo unas imagenes del resultado del proceso:
 
 ![Imagen Heroku](/iv-img/captura6.png)
 ![Imagen de la aplicacion online](/iv-img/captura4.png)
@@ -50,6 +72,8 @@ Se ha realizado el despliegue de la aplicación en Heroku. Se ha elegido este Pa
 ## Despliegue en IaaS : AWS
 ### Provisionamiento
 En este apartado se va a desplegar la aplicacion automaticamente en amazon AWS. Para ello usamos Ansible y vagrant. Estas dos aplicaciones nos van a hacer que todo este despliegue se haga automatico una vez que las configuremos correctamente.
+
+
 
 instalamos ansible.
 
