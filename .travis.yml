@@ -8,5 +8,11 @@ python:
   - "2.7"
 # command to install dependencies
 install: make install
+
+# crear la base de datos
+before_script:
+  - make migrate
+  - make populate
+
 # command to run tests
 script: make test
